@@ -1,15 +1,15 @@
 <div class="form">
     <mat-card class="card">
-      <mat-card-title> Send Email </mat-card-title>
+      <mat-card-title class="title"> Send Email </mat-card-title>
       <mat-card-content>
         <div class="container">
-          <mat-form-field>
+          <mat-form-field class="mf_field">
             <input
               [(ngModel)]="content.email"
+              type="email"
               matInput
               autofocus
               placeholder="Destinatario"
-              required
             />
           </mat-form-field>
           <mat-form-field>
@@ -17,7 +17,6 @@
               [(ngModel)]="content.subject"
               matInput
               placeholder="Asunto"
-              required
             />
           </mat-form-field>
           <mat-form-field>
@@ -25,7 +24,6 @@
               [(ngModel)]="content.message"
               matInput
               placeholder="Contenido del mensaje"
-              required
             ></textarea>
           </mat-form-field>
         </div>
