@@ -23,7 +23,7 @@ export class SendComponent implements OnInit {
   }
 
   sendEmail(){
-    if (!this.content.subject || !this.content.message) {
+    if (!this.content.addressee || !this.content.subject || !this.content.message) {
       this.message = "Incomplete data";
       this.openSnackBarkError();
     } else {

@@ -5,6 +5,15 @@
         <div class="container">
           <mat-form-field>
             <input
+              [(ngModel)]="content.addressee"
+              matInput
+              autofocus
+              placeholder="Destinatario"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
               [(ngModel)]="content.subject"
               matInput
               placeholder="Asunto"
