@@ -16,14 +16,45 @@ export class SendComponent implements OnInit {
   private message: string = '';
   private horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   private verticalPosition: MatSnackBarVerticalPosition = 'top';
-  private durationInSecond: number = 3000;
+  private durationInSeconds: number = 3000;
 
-  constructor(private _sendEmail: SendEmailService, private _snackBar: MatSnackBar) {
+  constructor(private _sendEmailService: SendEmailService, private _snackBar: MatSnackBar) {
     this.content = {};
   }
 
   sendEmail(){
+    if (!this.content.subject || !this.content.message) {
+      this.message = "Incomplete data";
+      this.openSnackBarkError();
+    } else {
+      this._sendEmailService.sendEmail(this.content).subscribe({
+        next:(v)=>{
+          this.message="Email sent";
+          this.openSnackBarSuccesfull();
+        },
+        error:(e)=>{
+          this.message = e.error.message;
+          this.openSnackBarkError();
+        }
+      })
+    }
+  }
 
+  openSnackBarSuccesfull() {
+    this._snackBar.open(this.message, ' X ', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: this.durationInSeconds,
+      panelClass: ['styleSnackBarkSuccesfull']
+    })
+  }
+  openSnackBarkError() {
+    this._snackBar.open(this.message, ' X ', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: this.durationInSeconds,
+      panelClass: ['styleSnackBarkError']
+    })
   }
 
   ngOnInit(): void {}
