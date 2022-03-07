@@ -31,6 +31,7 @@ export class SendComponent implements OnInit {
         next:(v)=>{
           this.message="Email sent";
           this.openSnackBarSuccesfull();
+          this.content= {};
         },
         error:(e)=>{
           this.message = e.error.message;
